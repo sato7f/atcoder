@@ -61,6 +61,7 @@ using vd = V<double>;
 using vs = V<string>;
 using vvi = vector<vector<int>>;
 using vvl = vector<vector<long long>>;
+using vvc = vector<vector<char>>;
 
 template <typename T, typename U>
 struct P : pair<T, U> {
