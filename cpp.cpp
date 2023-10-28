@@ -120,7 +120,8 @@ using vp = V<pl>;
 // #define se second
 
 #define in(a) cin >> a
-#define out(a, b) cout << a << b
+#define out2(a, b) cout << a << b
+#define out(a) cout << a << "\n"
 constexpr int INF = 0x3f3f3f3f;
 constexpr long long LINF = 0x3f3f3f3f3f3f3f3fLL;
 constexpr double EPS = 1e-8;
