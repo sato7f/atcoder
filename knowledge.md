@@ -12,13 +12,18 @@
 `sort(all(vp));`  
 ソートしたい値は first に入れておこう！
 
-### vector
+### vector・string
 - vector / string の特定の要素をカウントする  
 `count(all(s), 'o')`
+
+- string のスライス（string 文字列中の特定の範囲の文字列を抜き出す）  
+`S.substr(first, end)`  
+`end` は `S.end()` がデフォルト
 
 - vector の最大値・最小値  
 `*max_element(all(vec))`  
 `*min_element(all(vec))`  
+
 
 ### 教訓
 - 基本 long long 型を使う
@@ -29,8 +34,9 @@
     - 「l」「1」がフォントによっては見分けがつかず，デバッグの邪魔
 
 ### データ構造
-- union find
+- Union Find
 - 優先度付きキュー
+- セグラメント木
 
 ### アルゴリズム
 - 尺取り法

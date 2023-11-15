@@ -108,7 +108,7 @@ using vp = V<pl>;
 
 #define all(v) (v).begin(), (v).end()
 #define rall(v) (v).rbegin(), v.rend()
-#define each(x, v) for (auto x : v)
+#define each(i, v) for (auto i : v)
 // #define each2(x, y, v) for (auto [x, y] : v)
 #define rep(i, N) for (long long i = 0; i < (long long)(N); i++)
 #define repr(i, N) for (long long i = (long long)(N)-1; i >= 0; i--)
