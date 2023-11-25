@@ -65,40 +65,40 @@ using vvc = vector<vector<char>>;
 
 template <typename T, typename U>
 struct P : pair<T, U> {
-  template <typename... Args>
-  P(Args... args) : pair<T, U>(args...) {}
+    template <typename... Args>
+    P(Args... args) : pair<T, U>(args...) {}
 
-  using pair<T, U>::first;
-  using pair<T, U>::second;
+    using pair<T, U>::first;
+    using pair<T, U>::second;
 
-  P &operator+=(const P &r) {
-    first += r.first;
-    second += r.second;
-    return *this;
-  }
-  P &operator-=(const P &r) {
-    first -= r.first;
-    second -= r.second;
-    return *this;
-  }
-  P &operator*=(const P &r) {
-    first *= r.first;
-    second *= r.second;
-    return *this;
-  }
-  template <typename S>
-  P &operator*=(const S &r) {
-    first *= r, second *= r;
-    return *this;
-  }
-  P operator+(const P &r) const { return P(*this) += r; }
-  P operator-(const P &r) const { return P(*this) -= r; }
-  P operator*(const P &r) const { return P(*this) *= r; }
-  template <typename S>
-  P operator*(const S &r) const {
-    return P(*this) *= r;
-  }
-  P operator-() const { return P{-first, -second}; }
+    P &operator+=(const P &r) {
+        first += r.first;
+        second += r.second;
+        return *this;
+    }
+    P &operator-=(const P &r) {
+        first -= r.first;
+        second -= r.second;
+        return *this;
+    }
+    P &operator*=(const P &r) {
+        first *= r.first;
+        second *= r.second;
+        return *this;
+    }
+    template <typename S>
+    P &operator*=(const S &r) {
+        first *= r, second *= r;
+        return *this;
+    }
+    P operator+(const P &r) const { return P(*this) += r; }
+    P operator-(const P &r) const { return P(*this) -= r; }
+    P operator*(const P &r) const { return P(*this) *= r; }
+    template <typename S>
+    P operator*(const S &r) const {
+        return P(*this) *= r;
+    }
+    P operator-() const { return P{-first, -second}; }
 };
 template <typename T>
 using minpq = priority_queue<T, vector<T>, greater<T>>;
@@ -129,7 +129,7 @@ constexpr int MOD = 998244353;
 // constexpr int MOD = 1000000007;
 #define pb push_back
 
-int main(){
-
+int main() {
+    
     return 0;
 }
