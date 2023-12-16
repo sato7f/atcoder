@@ -1,5 +1,5 @@
-// @prefix kyopro
-// @description 
+// @prefix cpp_kyopro
+// @description 競プロのC++スニペット
 
 using namespace std;
 
@@ -133,6 +133,6 @@ constexpr int MOD = 998244353;
 #define pb push_back
 
 int main() {
-    $1
+    int $1;
     return 0;
 }
