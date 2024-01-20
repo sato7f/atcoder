@@ -60,9 +60,17 @@
 - `S.substr(first, end)`  
 `end` は `S.end()` がデフォルト
 
-- vector の最大値・最小値  
+#### vector の最大値・最小値  
+
 `*max_element(all(vec))`  
 `*min_element(all(vec))`  
+`max({2, 5, 1}) //5`  
+`min({2, 5. 1}) //5`
+
+#### vector を使った map(辞書型)の作り方
+
+pair に (key, value) を入れる  
+`vector<pair<ll, ll>>`
 
 ### ◆ 浮動小数点の丸め込み
 
