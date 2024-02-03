@@ -131,6 +131,8 @@ constexpr double EPS = 1e-8;
 constexpr int MOD = 998244353;
 // constexpr int MOD = 1000000007;
 #define pb push_back
+#define mod(a, b) (a % b + b) % b // 正整数mod
+
 
 int main() {
     int $1;
