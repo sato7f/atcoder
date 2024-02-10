@@ -43,37 +43,80 @@
 
 #### 降順（大きい順）にソート  
 
-- `sort(rall(v));`  
-`rall(v) = v.rbegin(),v.rend()`  
-ソート前にマイナスをかけて昇順にソートした後マイナスをかけて戻す
+- rallを使う
+  ```cpp
+  // #define rall(v) (v).rbegin(), v.rend()
+  sort(rall(vec));
+  ```
+- ソート前にマイナスをかけて昇順にソートした後マイナスをかけて戻す
+  ```cpp
+  rep(i, vec.size()) vec[i] *= -1;
+  sort(all(vec));
+  rep(i, vec.size()) vec[i] *= -1;
+  ```
 
-#### vector<pair<ll, ll>> を first を基準にソート  
+#### `vector<pair<ll, ll>>` を first を基準にソート  
 
-- `sort(all(vp));`  
-ソートしたい値は first に入れておこう！
+- ```cpp
+  vp vecpr = {{3,43},{1,53},{9,22}};
+  sort(all(vecpr));
+  ```
+  ※pairのfirstでソートされることに注意
 
 ### ◆ vector ・ string
 
 #### vector / string の特定の要素をカウントする  
 
-- `count(all(s), 'o')`
+- ```cpp
+  count(all(s), 'o')
+  ```
 
-#### string のスライス（string 文字列中の特定の範囲の文字列を抜き出す）  
+#### string のスライス 
 
-- `S.substr(first, end)`  
-`end` は `S.end()` がデフォルト
+- ```cpp
+  string s = "apple";
+  out(s.substr(1, 3)); // ppl
+  out(s.substr(1)); // pple
+  ```
+  ※s.substr()でsが書き換わるわけではない  
+  　あくまで条件にあう文字列を返すだけ
 
 #### vector の最大値・最小値  
 
-`*max_element(all(vec))`  
-`*min_element(all(vec))`  
-`max({2, 5, 1}) //5`  
-`min({2, 5. 1}) //5`
+- ```cpp
+  vl vec = {4,1,-2,3};
+  out(*max_element(all(vec))); // 4
+  out(*min_element(all(vec))); // -2
+  ```
+
+- ```cpp
+  out(max({4,1,-2,3})); //4
+  out(min({4,1,-2,3})); //-2
+  ```
+  ※`max(vec)`はコンパイルエラー
+
+#### mapについて
+
+- map型は辞書型  
+  Pythonのdictと考えると分かりやすい  
+  ```cpp
+  map<string, ll> dic;
+  dic["JP"] = 127;
+  dic["KR"] = 12;
+  dic["ID"] = 7;
+  dic.erase("JP"); //{"JP",127}が消される
+  ```
+  mapは内部で平衡二分木を使っており，keyでソート済データとして持っている．  
+  要素の検索はvectorに比べ速く，オーダーはO(logN)．  
+  **※検索早くしたいだけ，ソートされてなくてよい場合`unordered_map`を使うべき**
 
 #### vector を使った map(辞書型)の作り方
 
-pair に (key, value) を入れる  
-`vector<pair<ll, ll>>`
+- pair に (key, value) を入れる  
+  ```cpp
+  vector<pair<ll, ll>>`
+  ```
+  やってることはunordered_mapと同じ
 
 ### ◆ 浮動小数点の丸め込み
 
@@ -104,6 +147,7 @@ pair に (key, value) を入れる
 
 - `if(ans < x) ans = x;` ではなく  
 `ans = max(ans, x);` の方がかっこいい
+
 
 ## データ構造
 
