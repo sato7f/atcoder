@@ -1,6 +1,3 @@
-// @prefix cpp_kyopro
-// @description 競プロのC++スニペット
-
 using namespace std;
 
 #include <algorithm>
@@ -135,6 +132,12 @@ constexpr int MOD = 998244353;
 
 
 int main() {
-    ll $1;
+    ll H, W;
+    in(H);in(W);
+    vvl mat(H, vl(W, 0));
+    rep(i, H){
+        rep(j, W) out2(mat[i][j], " ");
+        out("");
+    }
     return 0;
 }

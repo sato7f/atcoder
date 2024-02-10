@@ -1,6 +1,3 @@
-// @prefix cpp_kyopro
-// @description 競プロのC++スニペット
-
 using namespace std;
 
 #include <algorithm>
@@ -131,10 +128,23 @@ constexpr double EPS = 1e-8;
 constexpr int MOD = 998244353;
 // constexpr int MOD = 1000000007;
 #define pb push_back
-#define mod(a, b) (a % b + b) % b // 正整数mod
+#define mod(a, b) (a % b + b) % b // 出力が正整数になるmod計算
 
 
 int main() {
-    ll $1;
+    ll Q;in(Q);
+    vl A;
+    rep(i, Q) {
+        pl query;
+        in(query.first);
+        in(query.second);
+        if(query.first == 1){
+            A.push_back(query.second);
+        }
+        else if(query.first == 2){
+            out(A[A.size()-query.second]);
+        }
+    }
+
     return 0;
 }

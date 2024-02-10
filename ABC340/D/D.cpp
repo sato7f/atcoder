@@ -1,6 +1,3 @@
-// @prefix cpp_kyopro
-// @description 競プロのC++スニペット
-
 using namespace std;
 
 #include <algorithm>
@@ -131,10 +128,56 @@ constexpr double EPS = 1e-8;
 constexpr int MOD = 998244353;
 // constexpr int MOD = 1000000007;
 #define pb push_back
-#define mod(a, b) (a % b + b) % b // 正整数mod
+#define mod(a, b) (a % b + b) % b // 出力が正整数になるmod計算
+
+
+void dijkstra(int s) {
+
+}
+
+struct edge {
+    int to;
+    int cost;
+};
+
+typedef pair<ll, ll> P;  // first: 最短距離, second: 頂点番号
 
 
 int main() {
-    ll $1;
+    ll N;in(N);
+    ll V;
+    vl d(N);
+    vector<edge> G(N); // 隣接リスト表現
+    rep(i, N-1){
+
+    }
+
+    fill(d, d + V, INF);
+    d[0] = 0;  // 始点sへの最短距離は0
+
+    priority_queue<P, vector<P>, greater<P>> que;  // 距離が小さい順に取り出せるようgreater<P>を指定
+    que.push(P(0, s));
+    while (!que.empty()) {
+        P p = que.top();
+        que.pop();
+        int v = p.second;  // 更新した頂点の中で距離が最小の頂点v
+        if (d[v] < p.first) {
+            continue;
+        }
+        for (auto e : G[v]) {  // 頂点vから出る辺eを走査
+            if (d[e.to] > d[v] + e.cost) {
+                d[e.to] = d[v] + e.cost;
+                que.push(P(d[e.to], e.to));
+            }
+        }
+    }
+
     return 0;
 }
+
+
+
+
+
+
+

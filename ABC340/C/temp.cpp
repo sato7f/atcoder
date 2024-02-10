@@ -1,6 +1,3 @@
-// @prefix cpp_kyopro
-// @description 競プロのC++スニペット
-
 using namespace std;
 
 #include <algorithm>
@@ -131,10 +128,46 @@ constexpr double EPS = 1e-8;
 constexpr int MOD = 998244353;
 // constexpr int MOD = 1000000007;
 #define pb push_back
-#define mod(a, b) (a % b + b) % b // 正整数mod
+#define mod(a, b) (a % b + b) % b // 出力が正整数になるmod計算
 
 
 int main() {
-    ll $1;
+    ll N;in(N);
+    ll cost = 0;
+    vl vec = {N};
+    if (N < 2) return 0;
+    
+    ll temp, add_n;
+    while(vec.size() != 0){
+        // 1以下の数字は配列に入れなければいいので条件分岐は不要
+        temp = vec[vec.size()-1];
+        vec.pop_back();
+        cost += temp;
+        //add_n = temp / 2;
+
+        //cout << temp << "/" << 2 << "=" << temp / 2 << endl;
+        
+        // 割り切れる場合
+        if(temp % 2 == 0 && 2 <= temp / 2){
+            //cout << "割り切れる" << endl;
+            vec.push_back(temp / 2);
+            vec.push_back(temp / 2);
+        }
+        // 割り切れない（新たな数字が別になる）場合
+        else if(temp % 2 != 0) {
+            //cout << "割り切れない" << endl;
+            if(2 <= temp / 2) {
+                vec.push_back(temp / 2);
+            }
+            if(2 <= temp / 2 + 1){
+                vec.push_back(temp / 2 + 1); //正の値だから+1確定
+            }
+        }
+        
+
+        //out("");
+        //if(10 <cost)break;
+    }
+    out(cost);
     return 0;
 }
