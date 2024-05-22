@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <array>
+#include <atcoder/dsu>
 #include <bitset>
 #include <cassert>
 #include <cctype>
@@ -48,6 +49,7 @@
 #include <vector>
 
 using namespace std;
+using namespace atcoder;
 
 #define ll long long
 
@@ -62,40 +64,6 @@ using vs = V<string>;
 using vvi = vector<vector<int>>;
 using vvl = vector<vector<long long>>;
 using vvc = vector<vector<char>>;
-
-// 最後の引数を出力するためのテンプレート関数
-template <typename T>
-void print_impl_endl(T &&arg) {
-    std::cout << arg << std::endl;
-}
-// 複数の引数を出力するためのテンプレート関数
-template <typename T, typename... Args>
-void print_impl_endl(T &&first, Args &&...args) {
-    std::cout << first << " ";
-    print_impl_endl(std::forward<Args>(args)...);
-}
-// メインのprint関数（改行あり）
-template <typename... Args>
-void print(Args &&...args) {
-    print_impl_endl(std::forward<Args>(args)...);
-}
-
-// 最後の引数を出力するためのテンプレート関数
-template <typename T>
-void print_impl_end(T &&arg) {
-    std::cout << arg;
-}
-// 複数の引数を出力するためのテンプレート関数
-template <typename T, typename... Args>
-void print_impl_end(T &&first, Args &&...args) {
-    std::cout << first << " ";
-    print_impl_end(std::forward<Args>(args)...);
-}
-// メインのprint関数（改行無し）
-template <typename... Args>
-void printf_cpp(Args &&...args) {
-    print_impl_end(std::forward<Args>(args)...);
-}
 
 template <typename T, typename U>
 struct P : pair<T, U> {
@@ -153,7 +121,9 @@ using vp = V<pl>;
 // #define fi first
 // #define se second
 
-#define input(a) cin >> a
+#define in(a) cin >> a
+#define out2(a, b) cout << a << b
+#define out(a) cout << a << "\n"
 constexpr int INF = 0x3f3f3f3f;
 constexpr long long LINF = 0x3f3f3f3f3f3f3f3fLL;
 constexpr double EPS = 1e-8;
@@ -162,9 +132,45 @@ constexpr int MOD = 998244353;
 #define pb push_back
 #define mod(a, b) (a % b + b) % b // 出力が正整数になるmod計算
 
-
 int main() {
-    ll $1;
-    input($1);
+    ll N;
+    in(N);
+
+    vector<pair<ll, pair<ll, ll> >> vecp(N);
+    rep(i, N) {
+        // (cst, (atc, idx))
+
+
+        // コスト
+        in(vecp[i].second.first);
+        // アタック
+        in(vecp[i].first);
+        // インデックス
+        vecp[i].second.second = i + 1;
+    }
+
+    sort(all(vecp));
+
+    vl ans_idx;
+    ll mow_look_atc, max_atc = 0; // 最強のアタック
+    rep(i, N) {
+        // cout << vecp[i].first << ", " <<  vecp[i].second.first << ", " << vecp[i].second.second  << ", " << max_atc << endl;
+
+        mow_look_atc = vecp[i].second.first; // atc
+        if (max_atc < mow_look_atc) {
+            // cout << "kousinn" << endl;
+            // 最強のアタックの更新
+            max_atc = mow_look_atc;
+            // 答え(idx)の追加
+            ans_idx.push_back(vecp[i].second.second);
+        }
+    }
+
+    sort(all(ans_idx));
+    out(ans_idx.size());
+    each(i, ans_idx){
+        out2(i, " ");
+    }
+
     return 0;
 }

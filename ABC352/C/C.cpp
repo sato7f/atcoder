@@ -46,8 +46,10 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
+#include<atcoder/dsu>
 
 using namespace std;
+using namespace atcoder;
 
 #define ll long long
 
@@ -62,40 +64,6 @@ using vs = V<string>;
 using vvi = vector<vector<int>>;
 using vvl = vector<vector<long long>>;
 using vvc = vector<vector<char>>;
-
-// 最後の引数を出力するためのテンプレート関数
-template <typename T>
-void print_impl_endl(T &&arg) {
-    std::cout << arg << std::endl;
-}
-// 複数の引数を出力するためのテンプレート関数
-template <typename T, typename... Args>
-void print_impl_endl(T &&first, Args &&...args) {
-    std::cout << first << " ";
-    print_impl_endl(std::forward<Args>(args)...);
-}
-// メインのprint関数（改行あり）
-template <typename... Args>
-void print(Args &&...args) {
-    print_impl_endl(std::forward<Args>(args)...);
-}
-
-// 最後の引数を出力するためのテンプレート関数
-template <typename T>
-void print_impl_end(T &&arg) {
-    std::cout << arg;
-}
-// 複数の引数を出力するためのテンプレート関数
-template <typename T, typename... Args>
-void print_impl_end(T &&first, Args &&...args) {
-    std::cout << first << " ";
-    print_impl_end(std::forward<Args>(args)...);
-}
-// メインのprint関数（改行無し）
-template <typename... Args>
-void printf_cpp(Args &&...args) {
-    print_impl_end(std::forward<Args>(args)...);
-}
 
 template <typename T, typename U>
 struct P : pair<T, U> {
@@ -145,15 +113,17 @@ using vp = V<pl>;
 #define each(i, v) for (auto i : v)
 #define each2(x, y, v) for (auto [x, y] : v)
 #define rep(i, N) for (long long i = 0; i < (long long)(N); i++)
-#define repr(i, N) for (long long i = (long long)(N) - 1; i >= 0; i--)
+#define repr(i, N) for (long long i = (long long)(N)-1; i >= 0; i--)
 #define rep1(i, N) for (long long i = 1; i <= (long long)(N); i++)
 #define repr1(i, N) for (long long i = (N); (long long)(i) > 0; i--)
 #define reg(i, a, b) for (long long i = (a); i < (b); i++)
-#define regr(i, a, b) for (long long i = (b) - 1; i >= (a); i--)
+#define regr(i, a, b) for (long long i = (b)-1; i >= (a); i--)
 // #define fi first
 // #define se second
 
-#define input(a) cin >> a
+#define in(a) cin >> a
+#define out2(a, b) cout << a << b
+#define out(a) cout << a << "\n"
 constexpr int INF = 0x3f3f3f3f;
 constexpr long long LINF = 0x3f3f3f3f3f3f3f3fLL;
 constexpr double EPS = 1e-8;
@@ -164,7 +134,23 @@ constexpr int MOD = 998244353;
 
 
 int main() {
-    ll $1;
-    input($1);
+    ll N, max_high=0, max_head=0, max_body=0, sum_body=0, max_head_index=0;
+    in(N);
+    vp vec_p(N);
+    rep(i, N){
+        in(vec_p[i].first);
+        in(vec_p[i].second);
+        // max_high = max(max_high, vec_p[i].second);
+        if (max_head < vec_p[i].second - vec_p[i].first){
+            max_head_index = i;
+        }
+        // max_head_index = max(max_head, vec_p[i].second - vec_p[i].first);
+        // max_body = max(max_body, vec_p[i].first);
+        sum_body += vec_p[i].first;
+    }
+    
+    max_high = sum_body + vec_p[max_head_index].second - vec_p[max_head_index].first; // answer
+    // // 一番上とその一個下を全通り試す
+    out(max_high);
     return 0;
 }
