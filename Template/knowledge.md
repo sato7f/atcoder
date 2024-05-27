@@ -65,6 +65,12 @@
 
 ### ◆ vector ・ string
 
+#### vectorでの二次元配列の初期化  
+
+- ```cpp
+  vector<vector<int>> data(3, vector<int>(4));
+  ```
+
 #### vector / string の特定の要素をカウントする  
 
 - ```cpp
@@ -114,7 +120,7 @@
 
 - pair に (key, value) を入れる  
   ```cpp
-  vector<pair<ll, ll>>`
+  vector<pair<ll, ll>>
   ```
   やってることはunordered_mapと同じ
 
@@ -148,6 +154,14 @@
 - `if(ans < x) ans = x;` ではなく  
 `ans = max(ans, x);` の方がかっこいい
 
+### 文字列長を固定して表示
+
+- ```
+  for(i = 7; i < 13; i++){
+    cout << setw(2) << ",";
+  }
+  // "7, 8, 9,10,11,12"
+  ```
 
 ## データ構造
 
