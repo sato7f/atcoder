@@ -61,6 +61,7 @@ using vd = V<double>;
 using vs = V<string>;
 using vvi = vector<vector<int>>;
 using vvl = vector<vector<long long>>;
+using vc = vector<char>;
 using vvc = vector<vector<char>>;
 
 // 最後の引数を出力するためのテンプレート関数
@@ -163,128 +164,13 @@ constexpr int MOD = 998244353;
 #define mod(a, b) (a % b + b) % b // 出力が正整数になるmod計算
 
 
-// 入荷　containers arriving
-// 出荷　containers shipping
-
-// 局面の状態
-struct factoryState{
-    // 縦横
-    ll N;
-    // 出荷前のコンテナの行列
-    vector<vector<ll>> A;
-    // 盤面のコンテナの行列
-    vector<vector<ll>> B;
-    // 出荷後のコンテナの行列
-    vector<vector<ll>> D;
-    // クレーンの位置
-    vp crane_pos;
-    // ターン数
-    ll turn;
-};
-
-// 行列を表示する関数
-void printMtx(vvl Mtx, string Mtx_name = "Mtx"){
-    cout << Mtx_name << ":" << endl;
-    rep(i, Mtx.size()){
-        cout << "[" << i << "] ";
-        rep(j, Mtx[i].size()){
-            cout << setw(2) << Mtx[i][j] << " ";
-        }
-        cout << endl;
-    }
-}
-
-// 全てのコンテナが出荷したか確認
-bool isAllContainersShipping(vvl D){
-    ll sum_container = 0;
-    rep(i, D.size()){
-        sum_container += D[i].size();
-    }
-    if (25 <= sum_container) return true;
-    else return false;
-}
-
-// startからgoalまで動かす
-factoryState moveS2G(factoryState state, pl start, pl goal){
-    return state;
-}
-
-// コンテナiをgoalまで動かす
-factoryState moveContIToGoal(factoryState state, ll container_id, pl goal){
-    return state;
-}
-
-// コンテナiを発生させる
-factoryState sponeContIToGoal(factoryState state, pl container_id, pl spone_pos){
-    return state;
-}
-
-// コンテナiを消滅させる
-factoryState delContI(factoryState state, pl container_id){
-    return state;
-}
-
-// 入荷処理
-/*
-factoryState arriveContainers(factoryState state){
-    rep(i, state.N){
-        // i行に出荷できるなら
-        if(state.B[i][0])
-    }
-
-    return state;
-}
-*/
-
-
 int main() {
-    // 入力
     ll N;
-    cin >> N;
-    // 待機行列
-    vvl A(N, vector<ll>(N));
+    input(N);
+
+    vvc vec(pow(3, N), vc(pow(3, N), '#'));
     rep(i, N){
-        rep(j, N){
-            cin >> A[i][j];
-        }
-    }
-
-    // 盤面行列
-    vvl B(N, vector<ll>(N));
-    // 出荷済み行列
-    vvl D(N, vector<ll>(0));
-    // ターンごとに回す
-    ll turn = 0;
-    // クレーンの位置の初期化完了
-    vp crane_pos(N);
-    rep(i, N) crane_pos[i] = {1, 0};
-    // クレーンの動き
-    
-
-    factoryState state = {N, A, B, D, crane_pos, turn,};
-
-    while(true){
-        // 1ターン経過
-        state.turn++;
-
-        // 入荷処理
         
-
-        // クレーン操作
-
-        // 出荷処理
-
-        // 終了条件判定
-        // 1. 全てのコンテナが出荷
-        // 2. 10000ターンになった（10000ターンまでしか許されないから）
-        if (isAllContainersShipping(state.D) || 10000 < state.turn) break;
-
-
-        // デバッグ
-        cout << state.turn << ", " << isAllContainersShipping(state.D) << endl;
-        printMtx(state.A);
-        if (state.turn == 4) break;
     }
-
     return 0;
 }
