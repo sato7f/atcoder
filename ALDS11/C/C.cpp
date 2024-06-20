@@ -166,7 +166,7 @@ ll dy8[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
 
 // １次元配列を表示￥する
 template <typename T>
-void printVec(T vec){
+void privec(T vec){
     rep(i, vec.size()){
         cout << vec[i] << " ";
     }
@@ -175,7 +175,7 @@ void printVec(T vec){
 
 // ２次元配列を表示する
 template <typename T>
-void printMtx(T mtx){
+void primtx(T mtx){
     rep(i, mtx.size()){
         rep(j, mtx[i].size()){
             cout << mtx[i][j] << " ";
@@ -186,55 +186,58 @@ void printMtx(T mtx){
 
 
 int main() {
-    ll N, M, X, all_ok, co, ans_co = LINF;
-    cin >> N >> M >> X;
-
-    vl C(N);
-    vvl A(N, vl(M));
-
+    ll N, U, K, tmp;
+    cin >> N;
+    
+    vvl conect(N + 1);
     rep(i, N){
-        cin >> C[i];
-        rep(j, M){
-            cin >> A[i][j];
+        cin >> U >> K;
+        rep(j, K){
+            cin >> tmp;
+            conect[U].push_back(tmp);
         }
     }
 
-    for(ll bit = 0; bit < (1 << N); bit++){
-        // cout << "i:" << bit << endl;
+    primtx(conect);
+    cout << conect.size() << endl;
 
-        vl sum_m(M, 0);
-        all_ok = 1;
-        co = 0;
+    // キュー
+    queue<ll> que;
+    que.push(1);
+    // 確定した距離・訪れた場所
+    vl dis(N + 1, -1);
+    dis[1] = 0;
 
-        // i行を使う
-        // cout << "use";
-        for(ll i = 0; i < N; i++){
-            if((bit >> i) & 1){
-                // cout << " " << C[i];
+    // キューが空になるまで回す
+    ll focus, dpt = 0;
+    while(!que.empty()){
+        // キューから取り出す
+        focus = que.front();
+        que.pop();
 
-                rep(j, M){
-                    sum_m[j] += A[i][j];
-                }
-                co += C[i];
-            }
+        cout << "focus:" << focus << endl;
+
+
+        // 隣接ノードの内，距離が確定していノードをキューに入れる（＝距離確定）
+       // cout << "next:";
+        each(nv, conect[focus]){
+            // cout << nv << " ";
+            if(dis[nv] != -1) continue;
+            
+
+            // 確定した距離を記憶
+            dis[nv] = dis[focus] + 1;
+
+            que.push(nv);
         }
         // cout << endl;
 
-        // cout << "@ ";
-        rep(idx, M){
-            // cout << sum_m[idx] << " ";
-            if(sum_m[idx] < X){
-                all_ok = 0;
-            }
-        }
-        if(all_ok){
-            ans_co = min(ans_co, co);
-            // cout << "ans_co:" << ans_co << endl;
-        }
-        // cout << endl;
+        // cout << "size:" << que.size() << endl;
+
+        // cout << "-------------" << endl;
     }
 
-    cout << (ans_co != LINF ? ans_co : -1) << endl;
+    privec(dis);
 
     return 0;
 }

@@ -161,10 +161,46 @@ constexpr int MOD = 998244353;
 // constexpr int MOD = 1000000007;
 #define pb push_back
 #define mod(a, b) (a % b + b) % b // 出力が正整数になるmod計算
+ll dx8[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
+ll dy8[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
+
+// １次元配列を表示￥する
+template <typename T>
+void printVec(T vec){
+    rep(i, vec.size()){
+        cout << vec[i] << " ";
+    }
+    cout << endl;
+}
+
+// ２次元配列を表示する
+template <typename T>
+void printMtx(T mtx){
+    rep(i, mtx.size()){
+        rep(j, mtx[i].size()){
+            cout << mtx[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
 
 
 int main() {
-    ll $1;
-    input($1);
+    ll N;
+    cin >> N;
+
+    // 連結リスト
+    vector<set<ll>> conect(N + 1);
+    ll A, B;
+    rep(i, N){
+        cin >> A >> B;
+        conect[A].insert(B);
+        conect[B].insert(A);
+    }
+
+    
+
+
     return 0;
 }
+

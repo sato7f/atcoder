@@ -1,3 +1,6 @@
+// @prefix cpp_ICPC
+// @description ICPC用のC++スニペット
+
 #include <algorithm>
 #include <array>
 #include <bitset>
@@ -186,56 +189,13 @@ void printMtx(T mtx){
 
 
 int main() {
-    ll N, M, X, all_ok, co, ans_co = LINF;
-    cin >> N >> M >> X;
-
-    vl C(N);
-    vvl A(N, vl(M));
-
-    rep(i, N){
-        cin >> C[i];
-        rep(j, M){
-            cin >> A[i][j];
+    while(1){
+        ll $1;
+        cin >> $1;
+        if(){
+            break;
         }
     }
-
-    for(ll bit = 0; bit < (1 << N); bit++){
-        // cout << "i:" << bit << endl;
-
-        vl sum_m(M, 0);
-        all_ok = 1;
-        co = 0;
-
-        // i行を使う
-        // cout << "use";
-        for(ll i = 0; i < N; i++){
-            if((bit >> i) & 1){
-                // cout << " " << C[i];
-
-                rep(j, M){
-                    sum_m[j] += A[i][j];
-                }
-                co += C[i];
-            }
-        }
-        // cout << endl;
-
-        // cout << "@ ";
-        rep(idx, M){
-            // cout << sum_m[idx] << " ";
-            if(sum_m[idx] < X){
-                all_ok = 0;
-            }
-        }
-        if(all_ok){
-            ans_co = min(ans_co, co);
-            // cout << "ans_co:" << ans_co << endl;
-        }
-        // cout << endl;
-    }
-
-    cout << (ans_co != LINF ? ans_co : -1) << endl;
-
     return 0;
 }
 

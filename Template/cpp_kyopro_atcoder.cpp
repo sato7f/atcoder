@@ -1,3 +1,6 @@
+// @prefix cpp_kyopro_atcoder
+// @description 競プロのC++スニペット
+
 #include <algorithm>
 #include <array>
 #include <bitset>
@@ -161,81 +164,10 @@ constexpr int MOD = 998244353;
 // constexpr int MOD = 1000000007;
 #define pb push_back
 #define mod(a, b) (a % b + b) % b // 出力が正整数になるmod計算
-ll dx8[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
-ll dy8[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
-
-// １次元配列を表示￥する
-template <typename T>
-void printVec(T vec){
-    rep(i, vec.size()){
-        cout << vec[i] << " ";
-    }
-    cout << endl;
-}
-
-// ２次元配列を表示する
-template <typename T>
-void printMtx(T mtx){
-    rep(i, mtx.size()){
-        rep(j, mtx[i].size()){
-            cout << mtx[i][j] << " ";
-        }
-        cout << endl;
-    }
-}
 
 
 int main() {
-    ll N, M, X, all_ok, co, ans_co = LINF;
-    cin >> N >> M >> X;
-
-    vl C(N);
-    vvl A(N, vl(M));
-
-    rep(i, N){
-        cin >> C[i];
-        rep(j, M){
-            cin >> A[i][j];
-        }
-    }
-
-    for(ll bit = 0; bit < (1 << N); bit++){
-        // cout << "i:" << bit << endl;
-
-        vl sum_m(M, 0);
-        all_ok = 1;
-        co = 0;
-
-        // i行を使う
-        // cout << "use";
-        for(ll i = 0; i < N; i++){
-            if((bit >> i) & 1){
-                // cout << " " << C[i];
-
-                rep(j, M){
-                    sum_m[j] += A[i][j];
-                }
-                co += C[i];
-            }
-        }
-        // cout << endl;
-
-        // cout << "@ ";
-        rep(idx, M){
-            // cout << sum_m[idx] << " ";
-            if(sum_m[idx] < X){
-                all_ok = 0;
-            }
-        }
-        if(all_ok){
-            ans_co = min(ans_co, co);
-            // cout << "ans_co:" << ans_co << endl;
-        }
-        // cout << endl;
-    }
-
-    cout << (ans_co != LINF ? ans_co : -1) << endl;
-
+    ll $1;
+    input($1);
     return 0;
 }
-

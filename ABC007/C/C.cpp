@@ -46,10 +46,7 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
-
 using namespace std;
-
-#define ll long long
 
 template <typename T>
 using V = vector<T>;
@@ -57,45 +54,21 @@ template <typename T>
 using VV = vector<vector<T>>;
 using vi = vector<int>;
 using vl = vector<long long>;
-using vd = V<double>;
-using vs = V<string>;
+using vd = vector<double>;
+using vc = vector<char>;
+using vs = vector<string>;
 using vvi = vector<vector<int>>;
 using vvl = vector<vector<long long>>;
+using vvd = vector<vector<double>>;
 using vvc = vector<vector<char>>;
-
-// 最後の引数を出力するためのテンプレート関数
+using vvs = vector<vector<char>>;
+using pi = pair<int, int>;
+using pl = pair<long long, long long>;
+using pc = pair<char, char>;
+using ps = pair<string, string>;
+using vp = vector<pair<long long, long long>>;
 template <typename T>
-void print_impl_endl(T &&arg) {
-    std::cout << arg << std::endl;
-}
-// 複数の引数を出力するためのテンプレート関数
-template <typename T, typename... Args>
-void print_impl_endl(T &&first, Args &&...args) {
-    std::cout << first << " ";
-    print_impl_endl(std::forward<Args>(args)...);
-}
-// メインのprint関数（改行あり）
-template <typename... Args>
-void print(Args &&...args) {
-    print_impl_endl(std::forward<Args>(args)...);
-}
-
-// 最後の引数を出力するためのテンプレート関数
-template <typename T>
-void print_impl_end(T &&arg) {
-    std::cout << arg;
-}
-// 複数の引数を出力するためのテンプレート関数
-template <typename T, typename... Args>
-void print_impl_end(T &&first, Args &&...args) {
-    std::cout << first << " ";
-    print_impl_end(std::forward<Args>(args)...);
-}
-// メインのprint関数（改行無し）
-template <typename... Args>
-void printf_cpp(Args &&...args) {
-    print_impl_end(std::forward<Args>(args)...);
-}
+using minpq = priority_queue<T, vector<T>, greater<T>>;
 
 template <typename T, typename U>
 struct P : pair<T, U> {
@@ -134,11 +107,6 @@ struct P : pair<T, U> {
     }
     P operator-() const { return P{-first, -second}; }
 };
-template <typename T>
-using minpq = priority_queue<T, vector<T>, greater<T>>;
-using pl = P<long long, long long>;
-using pi = P<int, int>;
-using vp = V<pl>;
 
 #define all(v) (v).begin(), (v).end()
 #define rall(v) (v).rbegin(), v.rend()
@@ -150,92 +118,92 @@ using vp = V<pl>;
 #define repr1(i, N) for (long long i = (N); (long long)(i) > 0; i--)
 #define reg(i, a, b) for (long long i = (a); i < (b); i++)
 #define regr(i, a, b) for (long long i = (b) - 1; i >= (a); i--)
+#define mod(a, b) (a % b + b) % b // 出力が正整数になるmod計算
+#define input(a) cin >> a
+
+constexpr long long INF = 0x3f3f3f3f;
+constexpr long long LINF = 0x3f3f3f3f3f3f3f3fLL;
+constexpr double EPS = 1e-8;
+constexpr long long MOD = 998244353;
+// constexpr long long MOD = 1000000007;
+long long dx4[8] = {0, 1, 0, -1};
+long long dy4[8] = {-1, 0, 1, 0};
+long long dx8[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
+long long dy8[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
+
+#define ll long long
+// #define pb push_back
 // #define fi first
 // #define se second
 
-#define input(a) cin >> a
-constexpr int INF = 0x3f3f3f3f;
-constexpr long long LINF = 0x3f3f3f3f3f3f3f3fLL;
-constexpr double EPS = 1e-8;
-constexpr int MOD = 998244353;
-// constexpr int MOD = 1000000007;
-#define pb push_back
-#define mod(a, b) (a % b + b) % b // 出力が正整数になるmod計算
-ll dx8[8] = {-1, 0, 1, -1, 1, -1, 0, 1};
-ll dy8[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
-
-// １次元配列を表示￥する
+// １次元配列を表示する
 template <typename T>
-void printVec(T vec){
-    rep(i, vec.size()){
-        cout << vec[i] << " ";
-    }
+void privec(T vec) {
+    rep(i, vec.size()) { cout << vec[i] << " "; }
     cout << endl;
 }
 
 // ２次元配列を表示する
 template <typename T>
-void printMtx(T mtx){
-    rep(i, mtx.size()){
-        rep(j, mtx[i].size()){
-            cout << mtx[i][j] << " ";
-        }
+void primtx(T mtx) {
+    rep(i, mtx.size()) {
+        rep(j, mtx[i].size()) { cout << mtx[i][j] << " "; }
         cout << endl;
     }
 }
 
 
 int main() {
-    ll N, M, X, all_ok, co, ans_co = LINF;
-    cin >> N >> M >> X;
+    ll R, C, sy, sx, gy, gx;
+    cin >> R >> C >> sy >> sx >> gy >> gx;
+    
+    // fix 1 indexed
+    sy--; sx--; gy--; gx--;
 
-    vl C(N);
-    vvl A(N, vl(M));
+    vvc mat(R, vc(C));
+    rep(i, R) { rep(j, C) cin >> mat[i][j]; }
 
-    rep(i, N){
-        cin >> C[i];
-        rep(j, M){
-            cin >> A[i][j];
+    // init queue
+    queue<pair<ll, ll>> que;
+    que.push({sx, sy});
+
+    // init distance
+    vvl dist(R, vl(C, -1));
+    dist[sy][sx] = 0;
+
+    // loop que
+    pl v, nv;
+    ll nvy, nvx;
+    while (!que.empty()) {
+        // pop que
+        v = que.front();
+        que.pop();
+
+        // push que
+        rep(i, 4) {
+            // init next v
+            nvy = v.first + dy4[i];
+            nvx = v.second + dx4[i];
+            nv = {nvy, nvx};
+
+            // 盤面外は見ない
+            if (nvy < 0 || R - 1 < nvy || nvx < 0 || C - 1 < nvx) { continue; }
+
+            // 距離が分かっている地点 or 壁はキューに入れない
+            if (dist[nv.first][nv.second] != -1 ||
+                mat[nv.first][nv.second] == '#') {
+                continue;
+            }
+
+            // push que and save dist
+            que.push(nv);
+            dist[nv.first][nv.second] = dist[v.first][v.second] + 1;
         }
     }
 
-    for(ll bit = 0; bit < (1 << N); bit++){
-        // cout << "i:" << bit << endl;
-
-        vl sum_m(M, 0);
-        all_ok = 1;
-        co = 0;
-
-        // i行を使う
-        // cout << "use";
-        for(ll i = 0; i < N; i++){
-            if((bit >> i) & 1){
-                // cout << " " << C[i];
-
-                rep(j, M){
-                    sum_m[j] += A[i][j];
-                }
-                co += C[i];
-            }
-        }
-        // cout << endl;
-
-        // cout << "@ ";
-        rep(idx, M){
-            // cout << sum_m[idx] << " ";
-            if(sum_m[idx] < X){
-                all_ok = 0;
-            }
-        }
-        if(all_ok){
-            ans_co = min(ans_co, co);
-            // cout << "ans_co:" << ans_co << endl;
-        }
-        // cout << endl;
-    }
-
-    cout << (ans_co != LINF ? ans_co : -1) << endl;
+    // primtx(mat);
+    // primtx(dist);
+    cout << dist[gy][gx] << endl;
 
     return 0;
 }
-
