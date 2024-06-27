@@ -62,13 +62,30 @@
   rep(i, vec.size()) vec[i] *= -1;
   ```
 
-#### `vector<pair<ll, ll>>` を first を基準にソート  
+#### `vector<pair<ll, ll>>` を first でソート  
 
 - ```cpp
   vp vecpr = {{3,43},{1,53},{9,22}};
   sort(all(vecpr));
   ```
   ※pairのfirstでソートされることに注意
+
+#### `vector<pair<ll, string>>` first を降順，first が同じなら second で昇順でソート
+- ```cpp
+  // 比較関数
+  bool my_compare(pair<ll, string> a, pair<ll, string> b){
+      // 基本はfirstで比較
+      if(a.first != b.first){
+          // return a.first < b.first; // 昇順
+          return a.first > b.first; // 降順
+      }
+      // それ以外はsecondで比較
+      if(a.second != b.second){
+          return a.second < b.second; // ABC順
+      }else return true; // どちらも同じ
+  }
+  sort(vec.begin(), vec.end(), my_compare);
+  ```
 
 ### ◆ vector ・ string
 
