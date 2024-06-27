@@ -211,55 +211,13 @@ struct Node{
 
 
 int main() {
-    while(1){
-        ll N;
-        cin >> N;
-        if(N == 0){break;} // fin
+    ll N, M;
+    cin >> N >> M;
 
-        ll U, K, tmp, ts = 0;
-        cin >> U >> K;
+    vl vec(N);
+    rep(i, N) cin >> vec[i];
 
-        vvl vec(N);
-        rep(i, K){
-            cin >> tmp;
-            vec[i].push_back(tmp - 1);
-        }
-
-        vvl ans(N, vl(2)); //id : d(発見時刻), f(完了時刻)
-
-        deque<ll> dq;
-        dq.push_back(0); // 必ず push_back
-
-        vl dist(N, -1);
-        dist[0] = 1;
-        ans[0][0] = ++ts;
-
-        ll v;
-
-        while(!dq.empty()){
-            // pop
-
-            if(vec[v].size() == 0 || ){
-                v = dq.front(); dq.pop_front(); // queue
-                // v = dq.back(); dq.pop_back(); // stack
-                
-                ans[v][1] = ++ts; // f(完了時刻)
-            }
-
-            each(nv, vec[v]){
-                // push しない場合は除外
-                if(dist[nv] != -1) continue;
-                
-                // push
-                dq.push_back(nv);
-                ans[v][0] = ++ts; // d(発見時刻)
-            }
-        }
-
-        rep(i, N){
-            cout << i + 1 << ans[i][0] << " " << ans[i][1] << endl;
-        }
-    }
+    
     return 0;
 }
 
