@@ -1,6 +1,3 @@
-// @prefix cpp_ICPC
-// @description ICPC用のC++スニペット
-
 #include <algorithm>
 #include <array>
 #include <bitset>
@@ -211,12 +208,24 @@ struct Node{
 };
 
 
+void DFS(const vector<vector<ll>>& graph, ll v, vector<bool>& visited) {
+    visited[v] = true;
+    // cout << "Visited: " << v << endl;
+
+    for (int next_v : graph[v]) {
+        if (!visited[next_v]) {
+            DFS(graph, next_v, visited);
+        }
+    }
+}
+
+
 
 
 int main() {
     while(1){
-        ll $1;
-        cin >> $1;
+        ll ;
+        cin >> ;
         if(){break;} // fin
 
         }

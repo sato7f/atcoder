@@ -82,6 +82,7 @@
       // それ以外はsecondで比較
       if(a.second != b.second){
           return a.second < b.second; // ABC順
+          // return a.second > b.second; // CBA順
       }else return true; // どちらも同じ
   }
   sort(vec.begin(), vec.end(), my_compare);
@@ -89,13 +90,13 @@
 
 ### ◆ vector ・ string
 
-#### vectorでの二次元配列の初期化  
+#### vectorでの二次元配列の初期化
 
 - ```cpp
   vector<vector<int>> data(3, vector<int>(4));
   ```
 
-#### vector / string の特定の要素をカウントする  
+#### vector / string の特定の要素をカウントする
 
 - ```cpp
   count(all(s), 'o')
@@ -195,7 +196,24 @@
 
 ## アルゴリズム
 
-- 尺取り法
-- DP
-- 二分探索 ←忘れがち
-- 全探索 ←忘れがち
+### ◆ DFS
+
+- visited（各頂点の訪問状態）とdeque（スタック）を初期化
+- 初期ノードをスタックに追加し、スタックが空になるまでループを実行
+  - スタックから頂点を取り出す
+  - 取り出した頂点が訪問済みでない場合は訪問済みに設定
+  - 隣接する未訪問の頂点をスタックに追加
+
+### ◆ BFS
+
+- visited（各頂点の訪問状態）とdeque（キュー）を初期化
+- 初期ノードをキューに追加し、訪問済みに設定
+- キューが空になるまでループを実行
+  - キューから頂点を取り出す
+  - 隣接する未訪問の頂点をキューに追加し，訪問済みに設定
+
+
+### ◆ 尺取り法
+### ◆ DP
+### ◆ 二分探索 ←忘れがち
+### ◆ 全探索 ←忘れがち

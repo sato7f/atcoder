@@ -1,6 +1,3 @@
-// @prefix cpp_ICPC
-// @description ICPC用のC++スニペット
-
 #include <algorithm>
 #include <array>
 #include <bitset>
@@ -211,16 +208,64 @@ struct Node{
 };
 
 
+// 連結リスト，スタートノード番号，探索済りすと
+ll cnt = 0;
+void DFS(const vector<vector<ll>>& graph, ll v, vector<bool>& visited, vp& io_time) {
+    // privec(visited);
+    // rep(i, io_time.size()) cout << io_time[i].first << " " << io_time[i].second << endl;
+    // cout << endl;
+
+    visited[v] = true;
+    // cout << "in : " << v + 1 << endl;
+    io_time[v].first = ++cnt;
+
+    for (int next_v : graph[v]) {
+        // cout << next_v << " : " << visited[next_v] << endl;
+        if (!visited[next_v]) {
+            DFS(graph, next_v, visited, io_time);
+            // cout << "out : " << next_v + 1 << endl;
+            io_time[next_v].second = ++cnt;
+        }
+    }
+}
 
 
 int main() {
-    while(1){
-        ll $1;
-        cin >> $1;
-        if(){break;} // fin
+    
+    ll N;
+    cin >> N;
 
+    // 連結リスト
+    vvl mat(N);
+    
+    rep(i, N){
+        ll U, K, tmp;
+        cin >> U >> K;
+        rep(j, K){
+            cin >> tmp;
+            mat[U - 1].push_back(tmp - 1);
         }
     }
+
+    // primtx(mat);
+
+    // 探索済みリスト
+    vector<bool> vis(N, false);
+
+    vp io_time(N); // d(発見時刻), f(完了時刻)
+
+    rep(sv, vis.size()){
+        if(vis[sv]) continue;
+        DFS(mat, sv, vis, io_time);
+        io_time[sv].second = ++cnt;
+        // 有効グラフのとき，svから遷移できないノードがあった場合
+        // 一番小さい
+    }
+
+    rep(i, N){
+        cout << i + 1 << " " << io_time[i].first << " " << io_time[i].second << endl;
+    }
+
     return 0;
 }
 
