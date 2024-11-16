@@ -142,7 +142,7 @@ long long dy8[8] = {-1, -1, -1, 0, 0, 1, 1, 1};
 // １次元配列を表示する
 template <typename T>
 void privec(T vec) {
-    rep(i, vec.size()) { cout << vec[i] << " "; }
+    rep(i, vec.size()) { cout << vec[i] << ' '; }
     cout << endl;
 }
 
@@ -150,7 +150,7 @@ void privec(T vec) {
 template <typename T>
 void primtx(T mtx) {
     rep(i, mtx.size()) {
-        rep(j, mtx[i].size()) { cout << mtx[i][j] << " "; }
+        rep(j, mtx[i].size()) { cout << mtx[i][j] << ' '; }
         cout << endl;
     }
 }
@@ -206,13 +206,25 @@ struct Node{
     }*/
 
     void pri(){
-        cout << key1 << ", " << key2 << ", "<< value << endl;
+        cout << key1 << ', ' << key2 << ', '<< value << endl;
     }
 };
 
 
 int main() {
-    ll A;
-    cin >> A;
+    string S;
+    cin >> S;
+    int cnt1=0, cnt2=0, cnt3=0;
+    
+    for(ll i = 0; i < S.size(); i++){
+        if(S[i] == '1') cnt1++;
+        else if(S[i] == '2') cnt2++;
+        else if(S[i] == '3') cnt3++;
+    }
+
+    // cout << cnt1 << ',' << cnt2 <<',' << cnt3 << endl;
+    if(cnt1==1 && (cnt2==2 && cnt3==3))cout << "Yes" << endl;
+    else cout << "No" << endl;
+    
     return 0;
 }

@@ -212,19 +212,6 @@ struct Node{
 
 
 int main() {
-    string S;
-    cin >> S;
-    vl vec;
-    int cnt = 0;
-    for(ll i = 1; i < S.size(); i++){
-        if(S[i] == '|'){
-            vec.push_back(cnt);
-            cnt=0;
-        }
-        else cnt++;
-    }
-    for(ll i = 0; i < vec.size(); i++){
-        cout << vec[i] << " ";
-    }
+    rep(i, 10)
     return 0;
 }
