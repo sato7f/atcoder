@@ -1,2 +1,25 @@
-# atcoder/*
-/.venv
+# --- Python General ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- uv / Virtual Environment ---
+# 仮想環境の実体は除外（重いため）
+.venv/
+# uvのキャッシュディレクトリ（もしローカルに置いている場合）
+.uv_cache/
+
+# ※ 注意: pyproject.toml, uv.lock, .python-version は
+# 環境再現に必要なので除外しないでください（コミットします）
+
+# --- Editor / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Competitive Programming Tools ---
+# online-judge-tools (oj) などがダウンロードするテストケースフォルダ
+test/
+tests/
+samples/

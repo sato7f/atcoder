@@ -3,7 +3,16 @@ name = "atcoder"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = [
-    "numpy>=2.3.1",
+    "ac-library-python>=0.1.0",
+    "bitarray==2.6.2",
+    "more-itertools==9.0.0",
+    "mpmath==1.2.1",
+    "networkx==3.0",
+    "numpy==1.24.1",
+    "pulp==2.7.0",
+    "sortedcontainers==2.4.0",
+    "sympy==1.11.1",
+    "z3-solver==4.12.1.0",
 ]
